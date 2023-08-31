@@ -1,5 +1,11 @@
 package com.example.learningapp.carexample.model;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+
+import java.util.Objects;
+
 public class Car {
 
     private Long id;
@@ -18,6 +24,7 @@ public class Car {
         this.price = price;
     }
 
+    @Positive
     public Long getId() {
         return id;
     }
@@ -26,6 +33,8 @@ public class Car {
         this.id = id;
     }
 
+    @NotNull(message = "Model must not be null")
+    @NotEmpty(message = "Model must have a value")
     public String getModel() {
         return model;
     }
@@ -50,12 +59,27 @@ public class Car {
         this.horse = horse;
     }
 
+    @NotNull(message = "Price must not be null")
+    @Positive
     public Double getPrice() {
         return price;
     }
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return Objects.equals(id, car.id) && Objects.equals(model, car.model) && Objects.equals(brand, car.brand) && Objects.equals(horse, car.horse) && Objects.equals(price, car.price);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, model, brand, horse, price);
     }
 
     @Override

@@ -4,6 +4,7 @@ import com.example.learningapp.carexample.model.Car;
 
 import java.util.List;
 
+
 public interface CarService {
 
     List<Car> getAllCars();
