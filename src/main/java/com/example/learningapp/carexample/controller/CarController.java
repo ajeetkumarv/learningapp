@@ -32,7 +32,7 @@ public class CarController {
 
     private final CarService carService;
 
-    @Autowired
+    //@Autowired // optional since spring 4.2 in constructor injection
     public CarController(CarService carService) {
         this.carService = carService;
     }

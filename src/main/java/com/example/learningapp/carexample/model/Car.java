@@ -3,10 +3,14 @@ package com.example.learningapp.carexample.model;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
 public class Car {
+
+    private static final Logger logger = LoggerFactory.getLogger(Car.class);
 
     private Long id;
     private String model;
@@ -91,5 +95,13 @@ public class Car {
                 ", horse=" + horse +
                 ", price=" + price +
                 '}';
+    }
+
+    private void buildCar() {
+        logger.info("Car is being built");
+    }
+
+    private void scrapCar() {
+        logger.info("Car is being scrapped");
     }
 }

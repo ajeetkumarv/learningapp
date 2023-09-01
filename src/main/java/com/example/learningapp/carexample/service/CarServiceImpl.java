@@ -1,6 +1,10 @@
 package com.example.learningapp.carexample.service;
 
 import com.example.learningapp.carexample.model.Car;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,9 +15,15 @@ import java.util.NoSuchElementException;
 @Service
 public class CarServiceImpl implements CarService {
 
+    private final static Logger logger = LoggerFactory.getLogger(CarServiceImpl.class);
+
+    @Autowired
+    @Qualifier("KingsCar")
+    private Car kingsCar;
+
     private List<Car> cars = new ArrayList<>(
             Arrays.asList(
-                    new Car(1L,"Astra", "Opel", 100, 18000d),
+                    new Car(1L, "Astra", "Opel", 100, 18000d),
                     new Car(2L, "Insignia", "Opel", 120, 22000d),
                     new Car(3L, "Golf", "VW", 90, 17000d)
             )
