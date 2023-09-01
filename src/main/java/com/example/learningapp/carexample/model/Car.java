@@ -24,7 +24,7 @@ public class Car {
         this.price = price;
     }
 
-    @Positive
+    @Positive(message = "Car id must be greater than 0")
     public Long getId() {
         return id;
     }
