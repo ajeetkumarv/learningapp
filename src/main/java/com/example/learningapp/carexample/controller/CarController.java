@@ -1,5 +1,6 @@
 package com.example.learningapp.carexample.controller;
 
+import com.example.learningapp.AppProps;
 import com.example.learningapp.carexample.model.Car;
 import com.example.learningapp.carexample.service.CarService;
 import jakarta.validation.Valid;
@@ -7,6 +8,7 @@ import jakarta.validation.constraints.Positive;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalTime;
 import java.util.List;
 
 @RestController
@@ -30,11 +33,20 @@ public class CarController {
 
     private static final Logger logger = LoggerFactory.getLogger(CarController.class);
 
+    @Autowired
+    private AppProps appProps;
+
     private final CarService carService;
 
     //@Autowired // optional since spring 4.2 in constructor injection
     public CarController(CarService carService) {
         this.carService = carService;
+    }
+
+    @GetMapping("/conf")
+    public String testCall() {
+        logger.info("App Prop: {}", appProps);
+        return "Ok@" + LocalTime.now();
     }
 
     @GetMapping
